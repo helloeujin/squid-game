@@ -20,7 +20,7 @@ function Box(props) {
         onClick={(event) => click(!clicked)}
         onPointerOver={(event) => hover(true)}
         onPointerOut={(event) => hover(false)}>
-        <boxGeometry args={[2, 2, 2]} />
+        <boxGeometry args={[1, 1, 1]} />
         <meshStandardMaterial color={hovered ? 'hotpink' : 'orange'} />
     </mesh>
   )
@@ -33,10 +33,9 @@ const App = () => {
       id="canvas"
       style={{ width: '100%', height: '100%' }}
     >
-          <Canvas camera={{ position: [0, 0, 0], fov: 35 }}>
-              <axesHelper args={[3]} />
+          <Canvas >
               <OrbitControls />
-
+              <axesHelper args={[3]} />
               <ambientLight />
               <pointLight position={[10, 10, 10]} />
               <Box position={[-3, 0, 0]} />
