@@ -1,8 +1,6 @@
-// import logo from './logo.svg';
-// import './App.css';
-// import profileImage from './img/Kitten-Blog.jpeg'
 import React, { useRef, useState } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
+import { Html, Stats, OrbitControls } from '@react-three/drei'
 
 
 function Box(props) {
@@ -16,27 +14,35 @@ function Box(props) {
   // Return the view, these are regular Threejs elements expressed in JSX
   return (
     <mesh
-      {...props}
-      ref={ref}
-      scale={clicked ? 1.5 : 1}
-      onClick={(event) => click(!clicked)}
-      onPointerOver={(event) => hover(true)}
-      onPointerOut={(event) => hover(false)}>
-      <boxGeometry args={[2, 2, 2]} />
-      <meshStandardMaterial color={hovered ? 'hotpink' : 'orange'} />
+        {...props}
+        ref={ref}
+        scale={clicked ? 1.5 : 1}
+        onClick={(event) => click(!clicked)}
+        onPointerOver={(event) => hover(true)}
+        onPointerOut={(event) => hover(false)}>
+        <boxGeometry args={[2, 2, 2]} />
+        <meshStandardMaterial color={hovered ? 'hotpink' : 'orange'} />
     </mesh>
   )
 }
 
 
-function App() {
+const App = () => {
   return (
-    <Canvas>
-        <ambientLight />
-        <pointLight position={[10, 10, 10]} />
-        <Box position={[-3, 0, 0]} />
-        <Box position={[3, 0, 0]} />
-    </Canvas>
+    <div
+      id="canvas"
+      style={{ width: '100%', height: '100%' }}
+    >
+          <Canvas camera={{ position: [0, 0, 0], fov: 35 }}>
+              <axesHelper args={[3]} />
+              <OrbitControls />
+
+              <ambientLight />
+              <pointLight position={[10, 10, 10]} />
+              <Box position={[-3, 0, 0]} />
+              <Box position={[3, 0, 0]} />
+          </Canvas>
+    </div>
   );
 }
 
