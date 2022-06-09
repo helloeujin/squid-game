@@ -35,7 +35,7 @@ const App = () => {
   // const gltf = useLoader(GLTFLoader, avocado)
   const gltf_squid = useLoader(GLTFLoader, squid_model)
   // <Box position={[-3, 0, 0]} />
-  //
+  // <axesHelper args={[3]} />
   // <pointLight position={[10, 10, 10]} />
 //
   return (
@@ -45,10 +45,10 @@ const App = () => {
     >
           <Canvas camera={{ position: [-1, 2, -.5] }}>
               <OrbitControls />
-              <axesHelper args={[3]} />
 
 
-              <ambientLight intensity={0.4} />
+
+              <ambientLight intensity={0.55} />
               <directionalLight intensity={0.4} />
 
               <primitive object={gltf_squid.scene} position={[-2, -2, 1]} scale={[0.1,0.1,0.1]}  />
