@@ -1,6 +1,9 @@
 import React, { useRef, useState } from 'react'
-import { Canvas, useFrame } from '@react-three/fiber'
+import { Canvas, useFrame, useLoader } from '@react-three/fiber'
 import { Html, Stats, OrbitControls } from '@react-three/drei'
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
+// import avocado from './Avocado.glb'
+import squid_model from './SquidGameAllScene03_NoLightsCamera.glb'
 
 
 function Box(props) {
@@ -28,18 +31,24 @@ function Box(props) {
 
 
 const App = () => {
+
+  // const gltf = useLoader(GLTFLoader, avocado)
+  const gltf_squid = useLoader(GLTFLoader, squid_model)
+  // <Box position={[-3, 0, 0]} />
+  // <axesHelper args={[3]} />
+
   return (
     <div
       id="canvas"
       style={{ width: '100%', height: '100%' }}
     >
-          <Canvas >
+          <Canvas camera={{ position: [5, 10, 5] }}>
               <OrbitControls />
-              <axesHelper args={[3]} />
+
               <ambientLight />
               <pointLight position={[10, 10, 10]} />
-              <Box position={[-3, 0, 0]} />
-              <Box position={[3, 0, 0]} />
+
+              <primitive object={gltf_squid.scene} position={[0, 0, 0]} scale={[0.1,0.1,0.1]}  />
           </Canvas>
     </div>
   );
